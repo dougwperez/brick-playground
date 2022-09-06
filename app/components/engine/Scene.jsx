@@ -133,6 +133,7 @@ class Scene extends React.Component {
       new THREE.Color(0xdedede)
     );
     this.grid = grid;
+
     if (!window.gridStatus) {
       this.scene.add(grid);
     }

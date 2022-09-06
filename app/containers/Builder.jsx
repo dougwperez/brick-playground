@@ -1,6 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import React from "react";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
 import {
   getMode,
@@ -9,7 +9,7 @@ import {
   getBrickDimensions,
   getAreUtilsOpen,
   getBricks,
-} from 'selectors';
+} from "selectors";
 import {
   setMode,
   setColor,
@@ -21,14 +21,13 @@ import {
   updateBrick,
   resetScene,
   setScene,
-} from 'actions';
-import Scene from 'components/engine/Scene';
-import Topbar from 'components/Topbar';
-import Help from 'components/Help';
-import Sidebar from 'components/Sidebar';
+} from "actions";
+import Scene from "components/engine/Scene";
+import Topbar from "components/Topbar";
+import Help from "components/Help";
+import Sidebar from "components/Sidebar";
 
-import styles from 'styles/containers/builder';
-
+import styles from "styles/containers/builder";
 
 class Builder extends React.Component {
   render() {
@@ -48,8 +47,11 @@ class Builder extends React.Component {
       bricks,
       updateBrick,
       resetScene,
-      setScene
+      setScene,
     } = this.props;
+
+    console.log(window, "Builder Log");
+
     return (
       <div className={styles.builder}>
         <Topbar
@@ -62,8 +64,14 @@ class Builder extends React.Component {
           brickSize={dimensions}
           onClickSetBrick={setBrick}
           utilsOpen={utilsOpen}
-          onClickToggleUtils={toggleUtils}>
-          <Sidebar utilsOpen={utilsOpen} resetScene={resetScene} objects={bricks} importScene={setScene} />
+          onClickToggleUtils={toggleUtils}
+        >
+          <Sidebar
+            utilsOpen={utilsOpen}
+            resetScene={resetScene}
+            objects={bricks}
+            importScene={setScene}
+          />
         </Topbar>
         <Scene
           brickColor={color}
@@ -74,13 +82,13 @@ class Builder extends React.Component {
           // shifted={utilsOpen}
           removeObject={removeBrick}
           addObject={addBrick}
-          updateObject={updateBrick} />
+          updateObject={updateBrick}
+        />
         <Help inversed={utilsOpen} />
       </div>
     );
   }
 }
-
 
 const mapStateToProps = (state) => ({
   mode: getMode(state),
@@ -90,7 +98,6 @@ const mapStateToProps = (state) => ({
   utilsOpen: getAreUtilsOpen(state),
   bricks: getBricks(state),
 });
-
 
 const mapDispatchToProps = {
   setMode,
@@ -105,7 +112,4 @@ const mapDispatchToProps = {
   setScene,
 };
 
-
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-)(Builder);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(Builder);

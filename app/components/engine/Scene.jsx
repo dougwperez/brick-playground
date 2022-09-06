@@ -65,6 +65,10 @@ class Scene extends React.Component {
     } else if (mode !== prevProps.mode && mode === "build") {
       this.rollOverBrick.visible = true;
     }
+    // window.test = "blah";
+    if (window.test === "what") {
+      this.grid.visible = false;
+    }
 
     if (grid !== prevProps.grid && grid === true) {
       this.grid.visible = true;

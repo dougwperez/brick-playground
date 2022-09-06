@@ -48,9 +48,10 @@ class Builder extends React.Component {
       updateBrick,
       resetScene,
       setScene,
+      foobles,
     } = this.props;
 
-    console.log(window, "Builder Log");
+    console.log("foobles", window.foobles);
 
     return (
       <div className={styles.builder}>

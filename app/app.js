@@ -19,13 +19,15 @@ function enableHMR(fn) {
   }
 }
 
+console.log("window.foobles", window.foobles);
+
 const store = setupStore();
 
 enableHMR(() => {
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
-        <Builder />
+        <Builder foobles={window.foobles} />
       </Provider>
     </AppContainer>,
     document.getElementById("root")

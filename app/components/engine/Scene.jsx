@@ -43,10 +43,12 @@ class Scene extends React.Component {
     // window["test"]();
     // window.test();
 
+    console.log("Testing DOC", document.body.style.backgroundColor);
+
     // window.custom = "gridOff1";
     // MyLib.value = 2;
     // alert("Function from index.html");
-    console.log(window.custom, "lok");
+    console.log(window.myLittleBox, "window.myLittleBox!!!");
 
     this._initCore();
     this._initUtils();
@@ -124,7 +126,8 @@ class Scene extends React.Component {
     this.plane = plane;
     this.scene.add(plane);
     // window.gridStatus = "hidden";
-    console.log("window.gridStatus", window.gridStatus);
+    console.log("DHFDSH");
+    console.log("window.initial_data", window.initial_data);
 
     const grid = new THREE.GridHelper(
       1500,

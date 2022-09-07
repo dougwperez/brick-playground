@@ -10,6 +10,8 @@ import setupStore from "store";
 import "styles/app";
 
 function enableHMR(fn) {
+  let ack = alert(window.test);
+
   fn();
 
   if (module.hot) {

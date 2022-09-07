@@ -19,9 +19,21 @@
   <body>
     <script>
       function test() {
-        window.gridStatus = "hidden";
-        alert("Function..");
+        window.addEventListener("DOMContentLoaded", (event) => {
+          document.querySelector(".ion-paintbrush").click();
+          console.log("dom ready");
+        });
       }
+      // test();
+
+      // window.addEventListener("DOMContentLoaded", (event) => {
+      //   document.querySelector(".ion-paintbrush").click();
+      //   console.log("dom ready");
+      // });
+
+      // setTimeout(function () {
+      //   document.querySelector(".button__button--3UeOv").click();
+      // }, 3000);
 
       console.log("window.gridStatus", window.gridStatus);
     </script>
@@ -30,6 +42,6 @@
     <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/89/three.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
-    <script type="text/javascript" src="builder.bundle.js"></script>
+    <script type="text/javascript" defer src="builder.bundle.js"></script>
   </body>
 </html>

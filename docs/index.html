@@ -12,41 +12,21 @@
       rel="stylesheet"
     />
     <link href="styles.css" rel="stylesheet" />
+    <script>
+      window._DEFAULT_DATA = "Data parsed in string";
+    </script>
   </head>
   <body>
     <script>
-      // window.foobles = [12, 453, 12];
-      // window.myLittleBox = "box content";
-      // window.initial_data = "hidden";
-      // console.log("window.initial_data in html", window.initial_data);
       function test() {
         window.gridStatus = "hidden";
-        // window.custom = "gridOff2";
         alert("Function..");
-        // onClickToggleGrid();
       }
-      window.gridStatus = "hidden";
+
       console.log("window.gridStatus", window.gridStatus);
     </script>
-    <div id="root" data-feed="custom_feed.json" data-someprop="value"></div>
-    <!-- <script
-      crossorigin
-      src="https://unpkg.com/react@18/umd/react.production.min.js"
-    ></script>
-    <script
-      crossorigin
-      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
-    ></script> -->
-    <!-- <script language="javascript">
-        window.myLittleBox = "box content";
-      var window.initial_data = "hidden";
-      // function test() {
-      //   window.gridStatus = "hidden";
-      //   // window.custom = "gridOff2";
-      //   alert("Function..");
-      //   // onClickToggleGrid();
-      // }
-    </script> -->
+    <div id="root"></div>
+
     <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/89/three.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>

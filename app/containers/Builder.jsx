@@ -49,9 +49,8 @@ class Builder extends React.Component {
       resetScene,
       setScene,
       foobles,
+      feed,
     } = this.props;
-
-    console.log("foobles", window.foobles);
 
     return (
       <div className={styles.builder}>

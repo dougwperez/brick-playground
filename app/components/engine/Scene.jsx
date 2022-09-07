@@ -40,15 +40,6 @@ class Scene extends React.Component {
 
   componentDidMount() {
     if (!Detector.webgl) Detector.addGetWebGLMessage();
-    // window["test"]();
-    // window.test();
-
-    console.log("Testing DOC", document.body.style.backgroundColor);
-
-    // window.custom = "gridOff1";
-    // MyLib.value = 2;
-    // alert("Function from index.html");
-    console.log(window.myLittleBox, "window.myLittleBox!!!");
 
     this._initCore();
     this._initUtils();
@@ -129,9 +120,6 @@ class Scene extends React.Component {
     const plane = new Plane(3000);
     this.plane = plane;
     this.scene.add(plane);
-    // window.gridStatus = "hidden";
-    console.log("DHFDSH");
-    console.log("window.initial_data", window.initial_data);
 
     const grid = new THREE.GridHelper(
       1500,

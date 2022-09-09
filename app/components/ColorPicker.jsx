@@ -1,16 +1,15 @@
-import React from 'react';
-import { GithubPicker } from 'react-color';
+import React from "react";
+import { GithubPicker } from "react-color";
 
-import { SimpleBrick } from 'components/Icons';
-import { colors } from 'utils/constants';
+import { SimpleBrick } from "components/Icons";
+import { colors } from "utils/constants";
 
-import styles from 'styles/components/color-picker';
-
+import styles from "styles/components/color-picker";
 
 class ColorPicker extends React.Component {
   state = {
-    open: false,
-  }
+    open: true,
+  };
 
   constructor(props) {
     super(props);
@@ -21,14 +20,14 @@ class ColorPicker extends React.Component {
 
   componentDidMount() {
     const { background } = this.props;
-    document.addEventListener('mousedown', this._handleClickOutside);
+    document.addEventListener("mousedown", this._handleClickOutside);
     this.setState({
       background,
     });
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this._handleClickOutside);
+    document.removeEventListener("mousedown", this._handleClickOutside);
   }
 
   _handleChangeColor(color) {
@@ -41,7 +40,7 @@ class ColorPicker extends React.Component {
     const { background } = this.props;
     if (this.picker && !this.picker.contains(event.target)) {
       this.setState({
-        open: false,
+        // open: true,
         background,
       });
     }
@@ -50,7 +49,7 @@ class ColorPicker extends React.Component {
   _togglePicker() {
     const { background } = this.props;
     this.setState({
-      open: !this.state.open,
+      // open: true,
       background,
     });
   }
@@ -62,7 +61,10 @@ class ColorPicker extends React.Component {
         <div className={styles.brick} onClick={this._togglePicker}>
           <SimpleBrick color={background} />
         </div>
-        <div className={open ? styles.visible : styles.picker} ref={(picker) => this.picker = picker}>
+        <div
+          className={open ? styles.visible : styles.picker}
+          ref={(picker) => (this.picker = picker)}
+        >
           <GithubPicker
             color={background}
             colors={colors}
@@ -74,6 +76,5 @@ class ColorPicker extends React.Component {
     );
   }
 }
-
 
 export default ColorPicker;

@@ -4,11 +4,10 @@
 // Component File
 // ----------------
 
-@import '~styles/vars';
-
+@import "~styles/vars";
 
 :local(.colorPicker) {
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: center;
 
@@ -17,20 +16,17 @@
   }
 }
 
-
 :local(.brick) {
   width: 35px;
 }
 
-
 :local(.picker) {
   position: absolute;
-  top: ~'calc(100% + 35px)';
-  left: ~'calc(50% - 15px)';
+  top: ~"calc(100% - 45px)";
+  left: ~"calc(50% + 455px)";
   display: none;
   // transform: translateX();
 }
-
 
 :local(.visible) {
   composes: picker;

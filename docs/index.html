@@ -12,40 +12,22 @@
       rel="stylesheet"
     />
     <link href="styles.css" rel="stylesheet" />
-    <script>
-      window._DEFAULT_DATA = "Data parsed in string";
-    </script>
   </head>
   <body>
-    <script>
-      function test() {
-        window.addEventListener("DOMContentLoaded", (event) => {
-          // document.querySelector(".ion-paintbrush").click();
-          document.querySelector('[title="#FF0000"]').click();
-
-          console.log("dom ready");
-        });
-      }
-      test();
-      console.log("updated github");
-
-      // window.addEventListener("DOMContentLoaded", (event) => {
-      //   document.querySelector(".ion-paintbrush").click();
-      //   console.log("dom ready");
-      // });
-
-      setTimeout(function () {
-        document.querySelector('[title="#F0E100"]').click();
-        // document.querySelector(".ion-paintbrush").click();
-      }, 1000);
-
-      console.log("window.gridStatus", window.gridStatus);
-    </script>
     <div id="root"></div>
-
+    <script>
+      setTimeout(() => {
+        // document.querySelector(".ion-paintbrush").click();
+        var element = document.getElementsByClassName(
+          "brick-picker__brickThumb--QVXb4"
+        )[1];
+        console.log("element", element);
+        element.click();
+      }, "1000");
+    </script>
     <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/89/three.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
-    <script type="text/javascript" defer src="builder.bundle.js"></script>
+    <script type="text/javascript" src="builder.bundle.js"></script>
   </body>
 </html>

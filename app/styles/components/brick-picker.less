@@ -4,12 +4,10 @@
 // Component File
 // ----------------
 
-@import '~styles/vars';
-
+@import "~styles/vars";
 
 @brick-height: 60px;
 @tip-size: 7px;
-
 
 :local(.brickPicker) {
   position: relative;
@@ -17,7 +15,6 @@
   align-items: center;
   justify-content: flex-start;
 }
-
 
 :local(.brick) {
   color: @white;
@@ -31,17 +28,15 @@
   }
 }
 
-
 :local(.brickIcon) {
   height: 40px;
   // margin-right: @base-margin-small;
 }
 
-
 :local(.picker) {
   position: absolute;
-  top: (@brick-height + @base-margin + 5px);
-  left: -(@base-margin / 2);
+  top: ~"calc(100% - 95px)";
+  left: ~"calc(50% + 555px)";
   padding: @base-padding;
   background: @secondary-blue;
   display: flex;
@@ -52,7 +47,7 @@
   border: 1px solid @primary-blue;
 
   &:after {
-    content: ' ';
+    content: " ";
     position: absolute;
     top: -(@tip-size);
     left: @base-margin;
@@ -63,7 +58,6 @@
     border-color: @secondary-blue;
   }
 }
-
 
 :local(.brickExample) {
   margin-right: @base-margin;
@@ -77,29 +71,26 @@
   }
 }
 
-
 :local(.brickThumb) {
   height: 50px;
   margin-bottom: @base-margin-small;
   padding: @base-padding-small;
   background-color: @white;
   border-radius: 10px;
-  box-shadow: 0px 3px 7px rgba(0,0,0,0.6);
+  box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.6);
   transition: all @base-transition-time ease-in-out;
 
   &:hover {
     cursor: pointer;
     transform: translateY(-2px);
-    box-shadow: 0px 5px 10px rgba(0,0,0,0.4);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
   }
 }
-
 
 :local(.selected) {
   composes: brickThumb;
   background-color: @tertiary-blue;
 }
-
 
 :local(.label) {
   color: @white;

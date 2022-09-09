@@ -1,17 +1,16 @@
-import React from 'react';
-import If from 'if-only';
-import isEqual from 'lodash/isEqual';
+import React from "react";
+import If from "if-only";
+import isEqual from "lodash/isEqual";
 
-import { displayNameFromDimensions, getBrickIconFromDimensions } from 'utils';
-import { bricks } from 'utils/constants';
+import { displayNameFromDimensions, getBrickIconFromDimensions } from "utils";
+import { bricks } from "utils/constants";
 
-import styles from 'styles/components/brick-picker';
-
+import styles from "styles/components/brick-picker";
 
 class BrickPicker extends React.Component {
   state = {
-    open: false,
-  }
+    open: true,
+  };
 
   constructor(props) {
     super(props);
@@ -20,11 +19,11 @@ class BrickPicker extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener('mousedown', this._handleClickOutside);
+    document.addEventListener("mousedown", this._handleClickOutside);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this._handleClickOutside);
+    document.removeEventListener("mousedown", this._handleClickOutside);
   }
 
   render() {
@@ -39,10 +38,20 @@ class BrickPicker extends React.Component {
           {/* {displayNameFromDimensions(selectedSize)} */}
         </div>
         <If cond={open}>
-          <div className={styles.picker} ref={(picker) => this.picker = picker}>
+          <div
+            className={styles.picker}
+            ref={(picker) => (this.picker = picker)}
+          >
             {bricks.map((b, i) => (
               <div key={i} className={styles.brickExample}>
-                <div className={isEqual(selectedSize, b) ? styles.selected : styles.brickThumb} onClick={() => handleSetBrick(b)}>
+                <div
+                  className={
+                    isEqual(selectedSize, b)
+                      ? styles.selected
+                      : styles.brickThumb
+                  }
+                  onClick={() => handleSetBrick(b)}
+                >
                   {getBrickIconFromDimensions(b)}
                 </div>
                 <div className={styles.label}>
@@ -58,18 +67,17 @@ class BrickPicker extends React.Component {
 
   _togglePicker() {
     this.setState({
-      open: !this.state.open,
+      // open: !this.state.open,
     });
   }
 
   _handleClickOutside() {
     if (this.picker && !this.picker.contains(event.target)) {
       this.setState({
-        open: false,
+        // open: false,
       });
     }
   }
 }
-
 
 export default BrickPicker;

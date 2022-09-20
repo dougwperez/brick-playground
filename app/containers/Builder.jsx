@@ -30,6 +30,11 @@ import Sidebar from "components/Sidebar";
 import styles from "styles/containers/builder";
 
 class Builder extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { testing: false };
+  }
+
   render() {
     const {
       mode,
@@ -44,6 +49,7 @@ class Builder extends React.Component {
       toggleUtils,
       removeBrick,
       addBrick,
+
       bricks,
       updateBrick,
       resetScene,
@@ -51,6 +57,7 @@ class Builder extends React.Component {
       foobles,
       feed,
     } = this.props;
+    console.log("Koca: testing ", this.state.testing);
 
     return (
       <div className={styles.builder}>

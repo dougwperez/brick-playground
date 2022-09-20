@@ -4,10 +4,9 @@
 // Component File
 // ----------------
 
-@import '~styles/vars';
+@import "~styles/vars";
 
 @shift-amount: 100px;
-
 
 :local(.scene) {
   position: absolute;
@@ -22,8 +21,18 @@
   }
 }
 
-
 :local(.shifted) {
   composes: scene;
   transform: translate3d(-@shift-amount, 0, 0);
+}
+
+:local(.test) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 100px;
+  height: 100px;
+  background-color: blue;
 }

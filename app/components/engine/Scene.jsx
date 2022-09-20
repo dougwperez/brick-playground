@@ -28,6 +28,7 @@ class Scene extends React.Component {
     isRDown: false,
     rotation: 0,
     coreObjects: [],
+    brickCreated: false,
   };
 
   constructor(props) {
@@ -202,11 +203,16 @@ class Scene extends React.Component {
   }
 
   _onMouseMove(event, scene) {
-    const { isDDown, isRDown } = this.state;
+    const { isDDown, isRDown, birckCreated } = this.state;
+
     const { mode, dimensions, objects } = this.props;
     event.preventDefault();
     const drag = true;
     this.setState({ drag });
+    // console.log("OUT");
+    // this.setState({ brickCreated = false });
+    // console.log("brickcreated on drag", brickCreated);
+
     const { width, height } = getMeasurementsFromDimensions(dimensions);
     const evenWidth = dimensions.x % 2 === 0;
     const evenDepth = dimensions.z % 2 === 0;
@@ -249,6 +255,8 @@ class Scene extends React.Component {
   }
 
   _onMouseDown(event) {
+    console.log("testclick");
+
     this.setState({
       drag: false,
     });
@@ -256,7 +264,7 @@ class Scene extends React.Component {
 
   _onMouseUp(event, scene) {
     const { mode, objects } = this.props;
-    const { drag, isDDown, isRDown } = this.state;
+    const { drag, isDDown, isRDown, brickCreated } = this.state;
     if (event.target.localName !== "canvas") return;
     event.preventDefault();
     if (!drag) {
@@ -278,17 +286,34 @@ class Scene extends React.Component {
           }
           // create cube
           else {
+            console.log("brick created");
+            this.setState({
+              brickCreated: true,
+            });
             this._createCube(intersect, scene.rollOverBrick);
           }
         } else if (mode === "paint") {
           this._paintCube(intersect);
         }
+      } else {
+        this.setState({
+          brickCreated: false,
+        });
+        console.log("brickCreated out of bounds", brickCreated);
       }
+    } else {
+      this.setState({
+        brickCreated: false,
+      });
+      console.log("brickCreated on drag", brickCreated);
     }
   }
 
   _createCube(intersect, rollOverBrick) {
     const { rotation } = this.state;
+    const { brickCreated } = this.state;
+    console.log("Koca: brickCreated ", brickCreated);
+
     const { brickColor, dimensions, objects, addObject } = this.props;
     let canCreate = true;
     const { width, depth } = getMeasurementsFromDimensions(dimensions);
@@ -405,10 +430,12 @@ class Scene extends React.Component {
   }
 
   render() {
-    const { brickHover, isShiftDown, isDDown, isRDown } = this.state;
+    const { brickHover, isShiftDown, isDDown, isRDown, brickCreated } =
+      this.state;
     const { mode, shifted } = this.props;
     return (
       <div>
+        <div className={styles.colorPicker}>TESTING</div>
         <div
           className={shifted ? styles.shifted : styles.scene}
           style={{

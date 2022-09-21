@@ -258,7 +258,8 @@ class Scene extends React.Component {
   }
 
   _onMouseUp(event, scene) {
-    const { mode, objects, brickBuilt, brickBuiltFunc } = this.props;
+    const { mode, objects, brickBuilt, brickBuiltFunc, incrementBricks } =
+      this.props;
 
     const { drag, isDDown, isRDown, brickCreated } = this.state;
     if (event.target.localName !== "canvas") return;
@@ -287,6 +288,7 @@ class Scene extends React.Component {
             });
 
             brickBuiltFunc(true);
+            incrementBricks();
 
             this._createCube(intersect, scene.rollOverBrick);
           }

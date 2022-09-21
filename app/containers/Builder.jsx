@@ -32,7 +32,7 @@ import styles from "styles/containers/builder";
 class Builder extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { brickBuilt: false };
+    this.state = { brickBuilt: false, bricksAdded: 0 };
     // this.brickBuiltFunc = this.brickBuiltFunc.bind(this);
   }
 
@@ -40,6 +40,19 @@ class Builder extends React.Component {
     console.log("brickBuiltFunc Called!!!");
     this.setState({
       brickBuilt: bool,
+    });
+  };
+
+  // incrementBricks = (prevState) => {
+  //   console.log("brickBuiltFunc Called!!!");
+  //   this.setState({
+  //     bricksAdded: +1
+  //   });
+  // };
+
+  incrementBricks = () => {
+    this.setState((prevState) => {
+      return { bricksAdded: prevState.bricksAdded + 1 };
     });
   };
 
@@ -64,7 +77,7 @@ class Builder extends React.Component {
       foobles,
       feed,
     } = this.props;
-    console.log("Koca: brickBuilt ", this.state.brickBuilt);
+    console.log("Koca: bricksAdded ", this.state.bricksAdded);
 
     // function brickBuiltFunc() {
     //   console.log("brickBuiltFunc Called!!!");
@@ -87,6 +100,7 @@ class Builder extends React.Component {
           utilsOpen={utilsOpen}
           onClickToggleUtils={toggleUtils}
           brickBuilt={this.state.brickBuilt}
+          bricksAdded={this.state.bricksAdded}
         >
           <Sidebar
             utilsOpen={utilsOpen}
@@ -107,6 +121,7 @@ class Builder extends React.Component {
           updateObject={updateBrick}
           brickBuilt={this.state.brickBuilt}
           brickBuiltFunc={this.brickBuiltFunc}
+          incrementBricks={this.incrementBricks}
         />
         <Help inversed={utilsOpen} />
       </div>

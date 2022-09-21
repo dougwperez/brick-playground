@@ -209,9 +209,6 @@ class Scene extends React.Component {
     event.preventDefault();
     const drag = true;
     this.setState({ drag });
-    // console.log("OUT");
-    // this.setState({ brickCreated = false });
-    // console.log("brickcreated on drag", brickCreated);
 
     const { width, height } = getMeasurementsFromDimensions(dimensions);
     const evenWidth = dimensions.x % 2 === 0;
@@ -255,8 +252,6 @@ class Scene extends React.Component {
   }
 
   _onMouseDown(event) {
-    console.log("testclick");
-
     this.setState({
       drag: false,
     });
@@ -264,7 +259,7 @@ class Scene extends React.Component {
 
   _onMouseUp(event, scene) {
     const { mode, objects, brickBuilt, brickBuiltFunc } = this.props;
-    console.log("Koca: brickBuilt in MOuseUP of Scene ", brickBuilt);
+
     const { drag, isDDown, isRDown, brickCreated } = this.state;
     if (event.target.localName !== "canvas") return;
     event.preventDefault();
@@ -287,35 +282,29 @@ class Scene extends React.Component {
           }
           // create cube
           else {
-            console.log("brick created");
             this.setState({
               brickCreated: true,
             });
-            // this.setState({
-            //   brickBuilt: true,
-            // });
+
             brickBuiltFunc(true);
-            // console.log("brickBuilt AFTER BRICKBUILTD", brickBuilt);
+
             this._createCube(intersect, scene.rollOverBrick);
           }
         } else if (mode === "paint") {
           this._paintCube(intersect);
         }
       } else {
+        brickBuiltFunc(false);
         console.log("brickCreated out of bounds", brickCreated);
       }
     } else {
-      this.setState({
-        brickCreated: false,
-      });
-      console.log("brickCreated on drag", brickCreated);
+      brickBuiltFunc(false);
     }
   }
 
   _createCube(intersect, rollOverBrick) {
     const { rotation } = this.state;
     const { brickCreated } = this.state;
-    console.log("Koca: brickCreated ", brickCreated);
 
     const { brickColor, dimensions, objects, addObject } = this.props;
     let canCreate = true;

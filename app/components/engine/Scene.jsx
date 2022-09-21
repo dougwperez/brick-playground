@@ -263,7 +263,8 @@ class Scene extends React.Component {
   }
 
   _onMouseUp(event, scene) {
-    const { mode, objects } = this.props;
+    const { mode, objects, brickBuilt, brickBuiltFunc } = this.props;
+    console.log("Koca: brickBuilt in MOuseUP of Scene ", brickBuilt);
     const { drag, isDDown, isRDown, brickCreated } = this.state;
     if (event.target.localName !== "canvas") return;
     event.preventDefault();
@@ -290,15 +291,17 @@ class Scene extends React.Component {
             this.setState({
               brickCreated: true,
             });
+            // this.setState({
+            //   brickBuilt: true,
+            // });
+            brickBuiltFunc(true);
+            // console.log("brickBuilt AFTER BRICKBUILTD", brickBuilt);
             this._createCube(intersect, scene.rollOverBrick);
           }
         } else if (mode === "paint") {
           this._paintCube(intersect);
         }
       } else {
-        this.setState({
-          brickCreated: false,
-        });
         console.log("brickCreated out of bounds", brickCreated);
       }
     } else {

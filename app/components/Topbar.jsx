@@ -23,11 +23,13 @@ const Topbar = ({
   utilsOpen,
   onClickToggleUtils,
   children,
+  brickBuilt,
 }) => {
+  console.log("Koca: brickBuilt in topbar", brickBuilt);
   return (
     <div className={styles.topbar}>
       <div className={styles.section}>
-        <div className={styles.title}>Mode</div>
+        <div className={styles.title}>{`brickBuilt:${brickBuilt}`}</div>
         <Button
           active={mode === "build"}
           onClick={() => onClickSetMode("build")}

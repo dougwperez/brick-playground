@@ -32,8 +32,16 @@ import styles from "styles/containers/builder";
 class Builder extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { testing: false };
+    this.state = { brickBuilt: false };
+    // this.brickBuiltFunc = this.brickBuiltFunc.bind(this);
   }
+
+  brickBuiltFunc = (bool) => {
+    console.log("brickBuiltFunc Called!!!");
+    this.setState({
+      brickBuilt: bool,
+    });
+  };
 
   render() {
     const {
@@ -49,7 +57,6 @@ class Builder extends React.Component {
       toggleUtils,
       removeBrick,
       addBrick,
-
       bricks,
       updateBrick,
       resetScene,
@@ -57,7 +64,14 @@ class Builder extends React.Component {
       foobles,
       feed,
     } = this.props;
-    console.log("Koca: testing ", this.state.testing);
+    console.log("Koca: brickBuilt ", this.state.brickBuilt);
+
+    // function brickBuiltFunc() {
+    //   console.log("brickBuiltFunc Called!!!");
+    //   this.setState({
+    //     brickBuilt: true,
+    //   });
+    // }
 
     return (
       <div className={styles.builder}>
@@ -72,6 +86,7 @@ class Builder extends React.Component {
           onClickSetBrick={setBrick}
           utilsOpen={utilsOpen}
           onClickToggleUtils={toggleUtils}
+          brickBuilt={this.state.brickBuilt}
         >
           <Sidebar
             utilsOpen={utilsOpen}
@@ -90,6 +105,8 @@ class Builder extends React.Component {
           removeObject={removeBrick}
           addObject={addBrick}
           updateObject={updateBrick}
+          brickBuilt={this.state.brickBuilt}
+          brickBuiltFunc={this.brickBuiltFunc}
         />
         <Help inversed={utilsOpen} />
       </div>

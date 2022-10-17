@@ -45,7 +45,11 @@ const Topbar = ({
         />
         <Button
           active={mode === "delete"}
-          onClick={() => onClickSetMode("delete")}
+          onClick={() =>
+            mode !== "delete"
+              ? onClickSetMode("delete")
+              : onClickSetMode("build")
+          }
           icon="close"
           text="Delete"
         />

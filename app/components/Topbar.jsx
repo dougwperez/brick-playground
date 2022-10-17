@@ -46,8 +46,14 @@ const Topbar = ({
         <Button
           active={mode === "delete"}
           onClick={() => onClickSetMode("delete")}
-          icon="paintbrush"
+          // icon="trashcan"
           text="Delete"
+        />
+        <Button
+          active={mode === "rotate"}
+          onClick={() => onClickSetMode("rotate")}
+          // icon="trashcan"
+          text="Rotate"
         />
       </div>
       <div className={styles.section}>

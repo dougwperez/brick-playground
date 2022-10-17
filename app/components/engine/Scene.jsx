@@ -57,6 +57,13 @@ class Scene extends React.Component {
     } else if (mode !== prevProps.mode && mode === "build") {
       this.rollOverBrick.visible = true;
     }
+    // if (mode !== prevProps.mode && mode === "rotate") {
+    //   scene.rollOverBrick.rotate(Math.PI / 2);
+    //   scene.setState({
+    //     isRDown: true,
+    //     rotation: scene.rollOverBrick.rotation.y,
+    //   });
+    // }
     // window.test = "blah";
     if (window.test === "what") {
       this.grid.visible = false;
@@ -276,6 +283,7 @@ class Scene extends React.Component {
         ...objects,
         this.plane,
       ]);
+
       if (intersects.length > 0) {
         const intersect = intersects[0];
         if (mode === "build") {
@@ -298,6 +306,12 @@ class Scene extends React.Component {
           this._paintCube(intersect);
         } else if (mode === "delete") {
           this._deleteCube(intersect);
+        } else if (mode === "rotate") {
+          scene.rollOverBrick.rotate(Math.PI / 2);
+          scene.setState({
+            isRDown: true,
+            rotation: scene.rollOverBrick.rotation.y,
+          });
         }
       } else {
         brickBuiltFunc(false);
@@ -355,6 +369,14 @@ class Scene extends React.Component {
     const { brickColor, updateObject } = this.props;
     if (intersect.object !== this.plane) {
       intersect.object.updateColor(brickColor);
+      updateObject(intersect.object);
+    }
+  }
+
+  _rotateCube(intersect) {
+    const { brickColor, updateObject } = this.props;
+    if (intersect.object !== this.plane) {
+      intersect.object.rotate(Math.PI / 2);
       updateObject(intersect.object);
     }
   }

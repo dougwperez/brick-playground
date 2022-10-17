@@ -261,6 +261,8 @@ class Scene extends React.Component {
     const { mode, objects, brickBuilt, brickBuiltFunc, incrementBricks } =
       this.props;
 
+    console.log("MODE", mode);
+
     const { drag, isDDown, isRDown, brickCreated } = this.state;
     if (event.target.localName !== "canvas") return;
     event.preventDefault();
@@ -297,7 +299,7 @@ class Scene extends React.Component {
         }
       } else {
         brickBuiltFunc(false);
-        console.log("brickCreated out of bounds", brickCreated);
+        console.log("brickCreated out of bounds BOOl", brickCreated);
       }
     } else {
       brickBuiltFunc(false);

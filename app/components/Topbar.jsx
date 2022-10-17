@@ -43,6 +43,12 @@ const Topbar = ({
           icon="paintbrush"
           text="Paint"
         />
+        <Button
+          active={mode === "build"}
+          onClick={() => onClickSetMode("build")}
+          icon="paintbrush"
+          text="Delete"
+        />
       </div>
       <div className={styles.section}>
         <div className={styles.title}>Color</div>

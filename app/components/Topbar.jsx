@@ -46,13 +46,13 @@ const Topbar = ({
         <Button
           active={mode === "delete"}
           onClick={() => onClickSetMode("delete")}
-          // icon="trashcan"
+          icon="close"
           text="Delete"
         />
         <Button
           active={mode === "rotate"}
           onClick={() => onClickSetMode("rotate")}
-          // icon="trashcan"
+          icon="nuclear"
           text="Rotate"
         />
       </div>

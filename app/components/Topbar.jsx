@@ -44,8 +44,8 @@ const Topbar = ({
           text="Paint"
         />
         <Button
-          active={mode === "build"}
-          onClick={() => onClickSetMode("build")}
+          active={mode === "delete"}
+          onClick={() => onClickSetMode("delete")}
           icon="paintbrush"
           text="Delete"
         />

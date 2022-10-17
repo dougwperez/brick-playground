@@ -52,7 +52,7 @@ class Scene extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { mode, grid, dimensions, objects } = this.props;
-    if (mode !== prevProps.mode && mode === "paint") {
+    if ((mode !== prevProps.mode && mode === "paint") || mode === "delete") {
       this.rollOverBrick.visible = false;
     } else if (mode !== prevProps.mode && mode === "build") {
       this.rollOverBrick.visible = true;
@@ -296,6 +296,8 @@ class Scene extends React.Component {
           }
         } else if (mode === "paint") {
           this._paintCube(intersect);
+        } else if (mode === "delete") {
+          this._deleteCube(intersect);
         }
       } else {
         brickBuiltFunc(false);

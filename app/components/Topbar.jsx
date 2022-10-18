@@ -11,6 +11,10 @@ import styles from "styles/components/topbar";
 //   console.log("fucskd");
 // }, []);
 
+const setRotate = () => {
+  // onClickSetMode("rotate");
+};
+
 const Topbar = ({
   mode,
   onClickSetMode,
@@ -39,7 +43,9 @@ const Topbar = ({
         />
         <Button
           active={mode === "paint"}
-          onClick={() => onClickSetMode("paint")}
+          onClick={() =>
+            mode !== "paint" ? onClickSetMode("paint") : onClickSetMode("build")
+          }
           icon="paintbrush"
           text="Paint"
         />
@@ -55,7 +61,11 @@ const Topbar = ({
         />
         <Button
           active={mode === "rotate"}
-          onClick={() => onClickSetMode("rotate")}
+          onClick={() =>
+            mode !== "rotate"
+              ? onClickSetMode("rotate")
+              : onClickSetMode("build")
+          }
           icon="nuclear"
           text="Rotate"
         />

@@ -278,16 +278,23 @@ class Scene extends React.Component {
       ).then((response) => response.json());
     };
 
-    // const incrementCounter = () => {
-    //   axios
-    //     .post(
-    //       " https://6xo1uwhbg0.execute-api.us-west-1.amazonaws.com/default/serverlessAppFunctionIncrement",
-    //       JSON.stringify({ key1: "json Stringify to the rescue" })
-    //     )
-    //     .then((response) => {
-    //       console.log(response);
-    //     });
-    // };
+    const incrementCounter = () => {
+      // axios
+      //   .post(
+      //     " https://6xo1uwhbg0.execute-api.us-west-1.amazonaws.com/default/serverlessAppFunctionIncrement",
+      //     JSON.stringify({ key1: "json Stringify to the rescue" })
+      //   )
+      //   .then((response) => {
+      //     console.log(response);
+      //   });
+
+      return fetch(
+        "https://6xo1uwhbg0.execute-api.us-west-1.amazonaws.com/default/serverlessAppFunctionIncrement",
+        {
+          method: "POST", // or 'PUT'
+        }
+      ).then((response) => response.json());
+    };
 
     console.log("MODE", mode);
 
@@ -330,7 +337,7 @@ class Scene extends React.Component {
           this._paintCube(intersect);
         } else if (mode === "delete") {
           this._deleteCube(intersect);
-          // incrementCounter();
+          incrementCounter();
         } else if (mode === "rotate") {
           scene.rollOverBrick.rotate(Math.PI / 2);
           scene.setState({

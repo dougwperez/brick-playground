@@ -276,15 +276,6 @@ class Scene extends React.Component {
           method: "POST", // or 'PUT'
         }
       ).then((response) => response.json());
-
-      // fetch(
-      //   "https://6rle9e9qnb.execute-api.us-west-1.amazonaws.com/default/serverlessAppFunction",
-      //   {
-      //     Method: "POST",
-      //   }
-      // ).then((response) => {
-      //   console.log(response);
-      // });
     };
 
     // const incrementCounter = () => {

@@ -19,6 +19,7 @@ import { CSSToHex, getMeasurementsFromDimensions } from "utils";
 import { colors, base } from "utils/constants";
 
 import styles from "styles/components/scene";
+import axios from "axios";
 
 class Scene extends React.Component {
   state = {
@@ -268,6 +269,17 @@ class Scene extends React.Component {
     const { mode, objects, brickBuilt, brickBuiltFunc, incrementBricks } =
       this.props;
 
+    const decrementCounter = () => {
+      axios
+        .post(
+          "https://6rle9e9qnb.execute-api.us-west-1.amazonaws.com/default/serverlessAppFunction",
+          JSON.stringify({ key1: "json Stringify to the rescue" })
+        )
+        .then((response) => {
+          console.log(response);
+        });
+    };
+
     console.log("MODE", mode);
 
     const { drag, isDDown, isRDown, brickCreated } = this.state;
@@ -299,6 +311,7 @@ class Scene extends React.Component {
 
             brickBuiltFunc(true);
             incrementBricks();
+            decrementCounter();
 
             this._createCube(intersect, scene.rollOverBrick);
           }

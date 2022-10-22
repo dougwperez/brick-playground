@@ -321,8 +321,10 @@ class Scene extends React.Component {
             });
 
             brickBuiltFunc(true);
+
             incrementBricks();
             decrementCounter();
+            console.log("count should drop!!!!");
 
             this._createCube(intersect, scene.rollOverBrick);
           }

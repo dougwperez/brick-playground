@@ -300,6 +300,9 @@ class Scene extends React.Component {
         "https://6xo1uwhbg0.execute-api.us-west-1.amazonaws.com/default/serverlessAppFunctionIncrement",
         {
           method: "POST", // or 'PUT'
+          body: JSON.stringify({
+            key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4",
+          }),
         }
       ).then((response) => response.json());
     };

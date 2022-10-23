@@ -32,9 +32,12 @@ import styles from "styles/containers/builder";
 class Builder extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { brickBuilt: false, bricksAdded: 0 };
+    this.state = { brickBuilt: false, bricksAdded: 0, idConfig: "" };
+
     // this.brickBuiltFunc = this.brickBuiltFunc.bind(this);
   }
+
+  // console.log("this.state.idConfig", this.state.idConfig)
 
   brickBuiltFunc = (bool) => {
     console.log("brickBuiltFunc Called!!!");
@@ -54,6 +57,10 @@ class Builder extends React.Component {
     this.setState((prevState) => {
       return { bricksAdded: prevState.bricksAdded + 1 };
     });
+  };
+
+  setId = (stringVal) => {
+    this.setState({ idConfig: stringVal });
   };
 
   render() {
@@ -101,6 +108,7 @@ class Builder extends React.Component {
           onClickToggleUtils={toggleUtils}
           brickBuilt={this.state.brickBuilt}
           bricksAdded={this.state.bricksAdded}
+          setId={this.setId}
         >
           <Sidebar
             utilsOpen={utilsOpen}
@@ -122,6 +130,7 @@ class Builder extends React.Component {
           brickBuilt={this.state.brickBuilt}
           brickBuiltFunc={this.brickBuiltFunc}
           incrementBricks={this.incrementBricks}
+          idConfig={this.state.idConfig}
         />
         <Help inversed={utilsOpen} />
       </div>

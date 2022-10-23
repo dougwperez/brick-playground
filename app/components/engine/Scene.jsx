@@ -266,8 +266,15 @@ class Scene extends React.Component {
   }
 
   _onMouseUp(event, scene) {
-    const { mode, objects, brickBuilt, brickBuiltFunc, incrementBricks } =
-      this.props;
+    const {
+      mode,
+      objects,
+      brickBuilt,
+      brickBuiltFunc,
+      incrementBricks,
+      idConfig,
+    } = this.props;
+    console.log("IDCONFIG IN SCENE", idConfig);
 
     //       Key: {
     //         "id": "fc5c1aa6-4258-4cde-abca-2d082bf158f4"
@@ -280,7 +287,8 @@ class Scene extends React.Component {
         {
           method: "POST", // or 'PUT'
           body: JSON.stringify({
-            key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4",
+            // key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4",
+            key1: `${idConfig}`,
           }),
         }
       ).then((response) => response.json());
@@ -301,7 +309,8 @@ class Scene extends React.Component {
         {
           method: "POST", // or 'PUT'
           body: JSON.stringify({
-            key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4",
+            // key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4",
+            key1: `${idConfig}`,
           }),
         }
       ).then((response) => response.json());

@@ -6,15 +6,6 @@ import BrickPicker from "components/BrickPicker";
 
 import styles from "styles/components/topbar";
 
-// useEffect(() => {
-//   //Runs only on the first render
-//   console.log("fucskd");
-// }, []);
-
-const setRotate = () => {
-  // onClickSetMode("rotate");
-};
-
 const Topbar = ({
   mode,
   onClickSetMode,
@@ -29,12 +20,27 @@ const Topbar = ({
   children,
   brickBuilt,
   bricksAdded,
+  setId,
 }) => {
   console.log("Koca: brickBuilt in topbar", brickBuilt);
+
+  // console.log("Koca: testing ", testing());
+
+  // const getId = (event) => {
+  //   console.log("event.target.textContent", event.target.textContent);
+  //   setId(event.target.textContent);
+  // };
+
   return (
     <div className={styles.topbar}>
       <div className={styles.section}>
-        <div className={styles.title}>{"ok"}</div>
+        <div
+          className={styles.title}
+          onClick={(event) => setId(event.target.textContent)}
+        >
+          {"ok"}
+        </div>
+
         <Button
           active={mode === "build"}
           onClick={() => onClickSetMode("build")}

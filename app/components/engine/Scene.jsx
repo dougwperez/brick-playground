@@ -269,11 +269,19 @@ class Scene extends React.Component {
     const { mode, objects, brickBuilt, brickBuiltFunc, incrementBricks } =
       this.props;
 
+    //       Key: {
+    //         "id": "fc5c1aa6-4258-4cde-abca-2d082bf158f4"
+    // },
+
     const decrementCounter = () => {
       return fetch(
         "https://6rle9e9qnb.execute-api.us-west-1.amazonaws.com/default/serverlessAppFunction",
+        // JSON.stringify({ key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4" })
         {
           method: "POST", // or 'PUT'
+          body: JSON.stringify({
+            key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4",
+          }),
         }
       ).then((response) => response.json());
     };

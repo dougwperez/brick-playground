@@ -34,6 +34,14 @@ const Topbar = ({
   return (
     <div className={styles.topbar}>
       <div className={styles.section}>
+        <div className={styles.rightSection}>
+          <Button
+            active={utilsOpen}
+            onClick={onClickToggleUtils}
+            icon="navicon-round"
+            text="Utils"
+          />
+        </div>
         <div
           className={styles.title}
           onClick={(event) => setId(event.target.textContent)}
@@ -96,14 +104,14 @@ const Topbar = ({
           text="Grid"
         />
       </div>
-      <div className={styles.rightSection}>
+      {/* <div className={styles.rightSection}>
         <Button
           active={utilsOpen}
           onClick={onClickToggleUtils}
           icon="navicon-round"
           text="Utils"
         />
-      </div>
+      </div> */}
       {children}
     </div>
   );

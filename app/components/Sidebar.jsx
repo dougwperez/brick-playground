@@ -9,7 +9,22 @@ import styles from "../styles/components/sidebar";
 
 class Sidebar extends React.Component {
   saveDataModel = () => {
-    console.log("WE HIT savedatamodel func");
+    const { objects } = this.props;
+    const fileName = "scene.json";
+    const simplified = objects.map((o) => ({
+      intersect: o._intersect,
+      color: o._color,
+      dimensions: o._dimensions,
+      rotation: o._rotation,
+      translation: o._translation,
+    }));
+    const stringifiedSimplified = JSON.stringify(simplified);
+    // var fileToSave = new Blob([JSON.stringify(simplified)], {
+    //   type: 'application/json',
+    //   name: fileName,
+    // });
+    // saveAs(fileToSave, fileName);
+    console.log("simplified", JSON.stringify(simplified));
     // axios
     //   .post(
     //     " https://6xo1uwhbg0.execute-api.us-west-1.amazonaws.com/default/serverlessAppFunctionIncrement",
@@ -25,7 +40,7 @@ class Sidebar extends React.Component {
         method: "POST", // or 'PUT'
         body: JSON.stringify({
           // key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4",
-          key1: "testing from dataModel",
+          key1: stringifiedSimplified,
         }),
       }
     ).then((response) => response.json());

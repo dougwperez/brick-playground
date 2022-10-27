@@ -40,13 +40,17 @@ class Sidebar extends React.Component {
       "https://pqsds8ch8k.execute-api.us-west-1.amazonaws.com/default/getDataFromSavedModels",
       {
         method: "GET",
+        // body: JSON.stringify({
+        //   key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4",
+        //   // key1: `${idConfig}`,
+        // }),
       }
     )
       .then(function (response) {
         if (!response.ok) {
           return Promise.reject("some reason");
         }
-        console.log("SOMETHING");
+
         console.log("response", response);
 
         return response.json();

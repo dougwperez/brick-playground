@@ -19,20 +19,7 @@ class Sidebar extends React.Component {
       translation: o._translation,
     }));
     const stringifiedSimplified = JSON.stringify(simplified);
-    // var fileToSave = new Blob([JSON.stringify(simplified)], {
-    //   type: 'application/json',
-    //   name: fileName,
-    // });
-    // saveAs(fileToSave, fileName);
     console.log("simplified", JSON.stringify(simplified));
-    // axios
-    //   .post(
-    //     " https://6xo1uwhbg0.execute-api.us-west-1.amazonaws.com/default/serverlessAppFunctionIncrement",
-    //     JSON.stringify({ key1: "json Stringify to the rescue" })
-    //   )
-    //   .then((response) => {
-    //     console.log(response);
-    //   });
 
     return fetch(
       "https://pqsds8ch8k.execute-api.us-west-1.amazonaws.com/default/postDataToSavedModels",
@@ -44,6 +31,49 @@ class Sidebar extends React.Component {
         }),
       }
     ).then((response) => response.json());
+  };
+
+  loadDataModel = () => {
+    console.log("IMPORT CALLED");
+
+    return fetch(
+      "https://pqsds8ch8k.execute-api.us-west-1.amazonaws.com/default/getDataFromSavedModels",
+      {
+        method: "GET", // or 'PUT'
+        // mode: "no-cors",
+        // headers: {
+        //   accept: "application/json",
+        // },
+
+        // body: JSON.stringify({
+        //   // key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4",
+        //   key1: stringifiedSimplified,
+        // }),
+      }
+    )
+      .then(function (response) {
+        if (!response.ok) {
+          return Promise.reject("some reason");
+        }
+        console.log(response);
+        return response.json();
+      })
+      .then((data) => console.log("data", data));
+
+    // .then((response) => console.log(response));
+
+    // .catch((err, response) => {
+    //   // console.log("resp", response.json());
+    //   console.log("err", err);
+    //   throw err;
+    // });
+
+    // const { importScene } = this.props;
+    // const bricks = objects.map(
+    //   (o) =>
+    //     new Brick(o.intersect, o.color, o.dimensions, o.rotation, o.translation)
+    // );
+    // importScene(bricks);
   };
 
   render() {
@@ -64,12 +94,12 @@ class Sidebar extends React.Component {
             </div>
           </div>
           <div className={styles.row}>
-            <FileUploader onFinish={this._importFile}>
+            <div onClick={this.loadDataModel}>
               <div className={styles.text}>
                 <i className="ion-log-in" />
-                <span>Import scene</span>
+                <span>Import from Dynamo</span>
               </div>
-            </FileUploader>
+            </div>
           </div>
         </div>
       </div>
@@ -98,12 +128,12 @@ class Sidebar extends React.Component {
   // TODO: bad, do this in epic/saga/thunk but not here
   @autobind
   _importFile(objects) {
-    const { importScene } = this.props;
-    const bricks = objects.map(
-      (o) =>
-        new Brick(o.intersect, o.color, o.dimensions, o.rotation, o.translation)
-    );
-    importScene(bricks);
+    // const { importScene } = this.props;
+    // const bricks = objects.map(
+    //   (o) =>
+    //     new Brick(o.intersect, o.color, o.dimensions, o.rotation, o.translation)
+    // );
+    // importScene(bricks);
   }
 }
 

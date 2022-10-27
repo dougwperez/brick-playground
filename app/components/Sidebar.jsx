@@ -39,16 +39,7 @@ class Sidebar extends React.Component {
     return fetch(
       "https://pqsds8ch8k.execute-api.us-west-1.amazonaws.com/default/getDataFromSavedModels",
       {
-        method: "GET", // or 'PUT'
-        // mode: "no-cors",
-        // headers: {
-        //   accept: "application/json",
-        // },
-
-        // body: JSON.stringify({
-        //   // key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4",
-        //   key1: stringifiedSimplified,
-        // }),
+        method: "GET",
       }
     )
       .then(function (response) {
@@ -62,9 +53,9 @@ class Sidebar extends React.Component {
       })
       .then((data) => {
         const { importScene } = this.props;
-        const selectedData = JSON.parse(data.Item.dataModel);
-        console.log("Koca: selectedData ", typeof selectedData);
-        const bricks = selectedData?.map(
+        const objectifiedData = JSON.parse(data.Item.dataModel);
+        console.log("Koca: selectedData ", typeof objectifiedData);
+        const bricks = objectifiedData?.map(
           (o) =>
             new Brick(
               o.intersect,
@@ -75,23 +66,7 @@ class Sidebar extends React.Component {
             )
         );
         importScene(bricks);
-        // console.log("data called", data.Item.dataModel);
       });
-
-    // .then((response) => console.log(response));
-
-    // .catch((err, response) => {
-    //   // console.log("resp", response.json());
-    //   console.log("err", err);
-    //   throw err;
-    // });
-
-    // const { importScene } = this.props;
-    // const bricks = objects.map(
-    //   (o) =>
-    //     new Brick(o.intersect, o.color, o.dimensions, o.rotation, o.translation)
-    // );
-    // importScene(bricks);
   };
 
   render() {

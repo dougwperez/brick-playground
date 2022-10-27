@@ -55,10 +55,28 @@ class Sidebar extends React.Component {
         if (!response.ok) {
           return Promise.reject("some reason");
         }
-        console.log(response);
+        console.log("SOMETHING");
+        console.log("response", response);
+
         return response.json();
       })
-      .then((data) => console.log("data", data));
+      .then((data) => {
+        const { importScene } = this.props;
+        const selectedData = JSON.parse(data.Item.dataModel);
+        console.log("Koca: selectedData ", typeof selectedData);
+        const bricks = selectedData?.map(
+          (o) =>
+            new Brick(
+              o.intersect,
+              o.color,
+              o.dimensions,
+              o.rotation,
+              o.translation
+            )
+        );
+        importScene(bricks);
+        // console.log("data called", data.Item.dataModel);
+      });
 
     // .then((response) => console.log(response));
 
@@ -128,12 +146,12 @@ class Sidebar extends React.Component {
   // TODO: bad, do this in epic/saga/thunk but not here
   @autobind
   _importFile(objects) {
-    // const { importScene } = this.props;
-    // const bricks = objects.map(
-    //   (o) =>
-    //     new Brick(o.intersect, o.color, o.dimensions, o.rotation, o.translation)
-    // );
-    // importScene(bricks);
+    const { importScene } = this.props;
+    const bricks = objects.map(
+      (o) =>
+        new Brick(o.intersect, o.color, o.dimensions, o.rotation, o.translation)
+    );
+    importScene(bricks);
   }
 }
 

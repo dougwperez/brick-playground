@@ -36,10 +36,13 @@ class Sidebar extends React.Component {
   loadDataModel = () => {
     console.log("IMPORT CALLED");
 
+    // const data = { key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4" };
+
     return fetch(
-      "https://pqsds8ch8k.execute-api.us-west-1.amazonaws.com/default/getDataFromSavedModels",
+      `https://pqsds8ch8k.execute-api.us-west-1.amazonaws.com/default/getDataFromSavedModels`,
       {
         method: "GET",
+
         // body: JSON.stringify({
         //   key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4",
         //   // key1: `${idConfig}`,
@@ -56,8 +59,9 @@ class Sidebar extends React.Component {
         return response.json();
       })
       .then((data) => {
+        console.log("Koca: data ", data.Items[0].dataModel);
         const { importScene } = this.props;
-        const objectifiedData = JSON.parse(data.Item.dataModel);
+        const objectifiedData = JSON.parse(data.Items[0].dataModel);
         console.log("Koca: selectedData ", typeof objectifiedData);
         const bricks = objectifiedData?.map(
           (o) =>
@@ -70,7 +74,8 @@ class Sidebar extends React.Component {
             )
         );
         importScene(bricks);
-      });
+      })
+      .catch((err) => console.log("err", err));
   };
 
   render() {

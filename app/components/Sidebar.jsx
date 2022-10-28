@@ -74,6 +74,8 @@ class Sidebar extends React.Component {
               o.translation
             )
         );
+        console.log("Koca: bricks ", bricks);
+
         importScene(bricks);
       })
       .catch((err) => console.log("err", err));

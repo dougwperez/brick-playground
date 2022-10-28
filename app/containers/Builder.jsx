@@ -28,6 +28,7 @@ import Help from "components/Help";
 import Sidebar from "components/Sidebar";
 
 import styles from "styles/containers/builder";
+import Brick from "components/engine/Brick";
 
 class Builder extends React.Component {
   constructor(props) {
@@ -59,8 +60,50 @@ class Builder extends React.Component {
     });
   };
 
+  loadDataModel = () => {
+    console.log("IMPORT CALLED");
+    return fetch(
+      `https://pqsds8ch8k.execute-api.us-west-1.amazonaws.com/default/getDataFromSavedModels`,
+      {
+        method: "GET",
+      }
+    )
+      .then(function (response) {
+        if (!response.ok) {
+          return Promise.reject("some reason");
+        }
+
+        console.log("response", response);
+
+        return response.json();
+      })
+      .then((data) => {
+        // FILTER THROUGH FOR ITEM WITH CORRECT ID, THEN LOAD THAT ONE
+        console.log("Koca: data ", data.Items[0].dataModel);
+        console.log("idConfig to be Matched:", this.state.idConfig);
+        const { importScene } = this.props;
+        const objectifiedData = JSON.parse(data.Items[0].dataModel);
+        console.log("Koca: selectedData ", typeof objectifiedData);
+        const bricks = objectifiedData?.map(
+          (o) =>
+            new Brick(
+              o.intersect,
+              o.color,
+              o.dimensions,
+              o.rotation,
+              o.translation
+            )
+        );
+        console.log("Koca: bricks ", bricks);
+        this.props.setScene(bricks);
+      })
+      .catch((err) => console.log("err", err));
+  };
+
   setId = (stringVal) => {
     this.setState({ idConfig: stringVal });
+    console.log("importScene", setScene);
+    this.loadDataModel();
   };
 
   render() {

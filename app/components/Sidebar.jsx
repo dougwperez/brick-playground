@@ -59,6 +59,7 @@ class Sidebar extends React.Component {
         return response.json();
       })
       .then((data) => {
+        // FILTER THROUGH FOR ITEM WITH CORRECT ID, THEN LOAD THAT ONE
         console.log("Koca: data ", data.Items[0].dataModel);
         const { importScene } = this.props;
         const objectifiedData = JSON.parse(data.Items[0].dataModel);

@@ -79,10 +79,17 @@ class Builder extends React.Component {
       })
       .then((data) => {
         // FILTER THROUGH FOR ITEM WITH CORRECT ID, THEN LOAD THAT ONE
+        console.log("ALL DATA MODELS", data.Items);
         console.log("Koca: data ", data.Items[0].dataModel);
         console.log("idConfig to be Matched:", this.state.idConfig);
         const { importScene } = this.props;
-        const objectifiedData = JSON.parse(data.Items[0].dataModel);
+
+        const allData = data.Items;
+        const targetDataModel = allData.filter(
+          (model) => model.modelId === "7d931aad-e47a-417a-abf6-91083198af70"
+        );
+        console.log("Koca: targetDataModel ", targetDataModel);
+        const objectifiedData = JSON.parse(targetDataModel[0].dataModel);
         console.log("Koca: selectedData ", typeof objectifiedData);
         const bricks = objectifiedData?.map(
           (o) =>

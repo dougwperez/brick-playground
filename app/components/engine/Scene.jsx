@@ -280,6 +280,31 @@ class Scene extends React.Component {
     //         "id": "fc5c1aa6-4258-4cde-abca-2d082bf158f4"
     // },
 
+    const saveDataModel = () => {
+      const { objects } = this.props;
+      const fileName = "scene.json";
+      const simplified = objects.map((o) => ({
+        intersect: o._intersect,
+        color: o._color,
+        dimensions: o._dimensions,
+        rotation: o._rotation,
+        translation: o._translation,
+      }));
+      const stringifiedSimplified = JSON.stringify(simplified);
+      console.log("simplified", JSON.stringify(simplified));
+
+      return fetch(
+        "https://pqsds8ch8k.execute-api.us-west-1.amazonaws.com/default/postDataToSavedModels",
+        {
+          method: "POST", // or 'PUT'
+          body: JSON.stringify({
+            // key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4",
+            key1: stringifiedSimplified,
+          }),
+        }
+      ).then((response) => response.json());
+    };
+
     const decrementCounter = () => {
       return fetch(
         "https://6rle9e9qnb.execute-api.us-west-1.amazonaws.com/default/serverlessAppFunction",
@@ -295,15 +320,6 @@ class Scene extends React.Component {
     };
 
     const incrementCounter = () => {
-      // axios
-      //   .post(
-      //     " https://6xo1uwhbg0.execute-api.us-west-1.amazonaws.com/default/serverlessAppFunctionIncrement",
-      //     JSON.stringify({ key1: "json Stringify to the rescue" })
-      //   )`
-      //   .then((response) => {
-      //     console.log(response);
-      //   });
-
       return fetch(
         "https://6xo1uwhbg0.execute-api.us-west-1.amazonaws.com/default/serverlessAppFunctionIncrement",
         {

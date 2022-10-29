@@ -105,6 +105,8 @@ class Scene extends React.Component {
 
     const controls = new Controls(this.camera, this.renderer.domElement);
     controls.init();
+    controls.dampingFactor = 0.15;
+    controls.rotateSpeed = 0.1;
     this.controls = controls;
 
     this.mount.appendChild(this.renderer.domElement);

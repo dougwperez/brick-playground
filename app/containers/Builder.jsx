@@ -86,7 +86,7 @@ class Builder extends React.Component {
 
         const allData = data.Items;
         const targetDataModel = allData.filter(
-          (model) => model.modelId === "7d931aad-e47a-417a-abf6-91083198af70"
+          (model) => model.modelId === this.state.idConfig
         );
         console.log("Koca: targetDataModel ", targetDataModel);
         const objectifiedData = JSON.parse(targetDataModel[0].dataModel);

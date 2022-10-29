@@ -372,7 +372,7 @@ class Scene extends React.Component {
             saveDataModel();
           }
         } else if (mode === "paint") {
-          this._paintCube(intersect).then(() => saveDataModel(); )
+          this._paintCube(intersect);
           // saveDataModel();
         } else if (mode === "delete") {
           this._deleteCube(intersect);

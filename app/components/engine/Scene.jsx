@@ -377,7 +377,7 @@ class Scene extends React.Component {
         } else if (mode === "delete") {
           this._deleteCube(intersect);
           incrementCounter();
-          saveDataModel();
+          // saveDataModel();
         } else if (mode === "rotate") {
           scene.rollOverBrick.rotate(Math.PI / 2);
           scene.setState({

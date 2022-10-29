@@ -365,9 +365,11 @@ class Scene extends React.Component {
 
             incrementBricks();
             decrementCounter();
-            console.log("count should drop!!!!");
+
+            console.log("FILE SHOULD BE SAVED");
 
             this._createCube(intersect, scene.rollOverBrick);
+            saveDataModel();
           }
         } else if (mode === "paint") {
           this._paintCube(intersect);

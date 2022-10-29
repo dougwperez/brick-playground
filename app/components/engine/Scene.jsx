@@ -300,6 +300,7 @@ class Scene extends React.Component {
           body: JSON.stringify({
             // key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4",
             key1: stringifiedSimplified,
+            key2: `${idConfig}`,
           }),
         }
       ).then((response) => response.json());

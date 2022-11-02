@@ -47,7 +47,7 @@ const Topbar = ({
           onClick={(event) => setId(event.target.textContent)}
         >
           {/* NOTE: CAN MANUALLY TEST idCONFIGS BELOW */}
-          {"config1.2"}
+          {"IDCONFIG"}
         </div>
 
         <Button

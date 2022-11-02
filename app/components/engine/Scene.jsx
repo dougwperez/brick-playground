@@ -41,6 +41,8 @@ class Scene extends React.Component {
   }
 
   componentDidMount() {
+    console.log("REFRESH");
+    this.props.loadDataModel();
     if (!Detector.webgl) Detector.addGetWebGLMessage();
 
     this._initCore();

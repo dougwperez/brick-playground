@@ -85,10 +85,10 @@ class Builder extends React.Component {
         const { importScene } = this.props;
 
         const allData = data.Items;
-        const targetDataModel = allData.filter((model) =>
-          model.modelId === this.state.idConfig
-            ? this.state.idConfig
-            : localStorage.storedId
+        console.log("Koca: this.state.idConfig ", this.state.idConfig);
+        console.log("localStorage.storedId", localStorage.storedId);
+        const targetDataModel = allData.filter(
+          (model) => model.modelId === localStorage.storedId
         );
         console.log("Koca: targetDataModel ", targetDataModel);
         const objectifiedData = JSON.parse(targetDataModel[0].dataModel);
@@ -112,8 +112,7 @@ class Builder extends React.Component {
   setId = (stringVal) => {
     this.setState({ idConfig: stringVal });
     localStorage.setItem("storedId", this.state.idConfig);
-
-    console.log("LOCAL STORAGE: ", localStorage.storedId);
+    console.log("LOCAL STORAGE: ", localStorage);
     console.log("importScene", setScene);
     this.loadDataModel();
   };
@@ -186,6 +185,7 @@ class Builder extends React.Component {
           brickBuiltFunc={this.brickBuiltFunc}
           incrementBricks={this.incrementBricks}
           idConfig={this.state.idConfig}
+          loadDataModel={this.loadDataModel}
         />
         <Help inversed={utilsOpen} />
       </div>

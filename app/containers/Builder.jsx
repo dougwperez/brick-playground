@@ -111,10 +111,10 @@ class Builder extends React.Component {
 
   setId = (stringVal) => {
     this.setState({ idConfig: stringVal });
-    localStorage.setItem("storedId", this.state.idConfig);
-    console.log("LOCAL STORAGE: ", localStorage);
+    localStorage.setItem("storedId", stringVal);
+    console.log("LOCAL STORAGE in SET ID ", localStorage);
     console.log("importScene", setScene);
-    this.loadDataModel();
+    // this.loadDataModel();
   };
 
   render() {
@@ -186,6 +186,7 @@ class Builder extends React.Component {
           incrementBricks={this.incrementBricks}
           idConfig={this.state.idConfig}
           loadDataModel={this.loadDataModel}
+          setId={this.setId}
         />
         <Help inversed={utilsOpen} />
       </div>

@@ -43,6 +43,7 @@ class Scene extends React.Component {
   componentDidMount() {
     console.log("REFRESH");
     this.props.loadDataModel();
+    // this.props.setId(localStorage.storedId);
     if (!Detector.webgl) Detector.addGetWebGLMessage();
 
     this._initCore();
@@ -304,7 +305,8 @@ class Scene extends React.Component {
           body: JSON.stringify({
             // key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4",
             key1: stringifiedSimplified,
-            key2: `${idConfig}`,
+            // key2: `${idConfig}`,
+            key2: `${localStorage.storedId}`,
           }),
         }
       ).then((response) => response.json());
@@ -318,7 +320,7 @@ class Scene extends React.Component {
           method: "POST", // or 'PUT'
           body: JSON.stringify({
             // key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4",
-            key1: `${idConfig}`,
+            key1: `${localStorage.storedId}`,
           }),
         }
       ).then((response) => response.json());
@@ -331,7 +333,7 @@ class Scene extends React.Component {
           method: "POST", // or 'PUT'
           body: JSON.stringify({
             // key1: "fc5c1aa6-4258-4cde-abca-2d082bf158f4",
-            key1: `${idConfig}`,
+            key1: `${localStorage.storedId}`,
           }),
         }
       ).then((response) => response.json());
